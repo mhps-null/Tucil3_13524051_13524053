@@ -8,7 +8,6 @@ public class RendererCLI {
         for (int i = 0; i < board.N; i++) {
             for (int j = 0; j < board.M; j++) {
 
-                // kalau posisi actor
                 if (i == state.x && j == state.y) {
                     System.out.print('Z');
                     continue;

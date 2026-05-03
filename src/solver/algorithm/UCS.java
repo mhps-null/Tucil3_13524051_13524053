@@ -29,7 +29,6 @@ public class UCS implements SearchAlgorithm {
                 continue;
             visited.add(key);
 
-            // simpan untuk playback
             history.add(new State(current));
 
             // GOAL CHECK
