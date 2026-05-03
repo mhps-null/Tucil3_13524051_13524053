@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class PlaybackCLI {
 
-    public static void play(Board board, List<State> history) {
-        Scanner sc = new Scanner(System.in);
-
+    public static void play(Board board, List<State> history, Scanner sc) {
         int idx = 0;
 
         while (true) {
