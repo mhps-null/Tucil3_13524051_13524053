@@ -1,0 +1,32 @@
+# Build output
+/out/
+/bin/
+/build/
+*.class
+*.jar
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+
+# IDE - VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# Java specific
+hs_err_pid*
+replay_pid*
+
+# Testing output
+/test/output/
