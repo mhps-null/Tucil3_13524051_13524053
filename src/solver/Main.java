@@ -19,7 +19,7 @@ public class Main {
             // INPUT FILE
             Board board = InputParser.parse("test/input.txt");
 
-            // PILIH ALGORITHM
+            // ALGORITHM
             System.out.print("Algoritma (UCS/GBFS/A*): ");
             String algoChoice = sc.nextLine();
 
