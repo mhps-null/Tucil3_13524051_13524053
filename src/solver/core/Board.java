@@ -1,5 +1,8 @@
 package solver.core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Board {
     public int N, M;
     public Tile[][] grid;
@@ -8,6 +11,7 @@ public class Board {
 
     public int startX = -1, startY = -1;
     public int goalX = -1, goalY = -1;
+    public Map<Integer, int[]> targetCoords = new HashMap<>();
 
 
     public Board(int N, int M) {

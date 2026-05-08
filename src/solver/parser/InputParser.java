@@ -56,8 +56,21 @@ public class InputParser {
                     }
 
                     if (tile.type == TileType.NUMBER) {
+                        if (board.targetCoords.containsKey(tile.value)) {
+                            throw new RuntimeException("Duplicate number found: " + tile.value);
+                        }
+
+                        board.targetCoords.put(tile.value, new int[]{i, j});
+
                         board.maxNumber = Math.max(board.maxNumber, tile.value);
                     }
+                }
+            }
+
+            if (board.maxNumber != -1) {
+                if (board.targetCoords.size() != board.maxNumber + 1) {
+                    throw new RuntimeException("The number sequence is incomplete! The maximum number is " + 
+                        board.maxNumber + " but there (is/are) only " + board.targetCoords.size() + " number tile(s).");
                 }
             }
 
@@ -73,7 +86,14 @@ public class InputParser {
                     if (!sc.hasNextInt()) {
                         throw new RuntimeException("Invalid cost matrix");
                     }
-                    board.cost[i][j] = sc.nextInt();
+
+                    int costValue = sc.nextInt();
+
+                    if (costValue < 0) {
+                        throw new RuntimeException("Invalid cost at (" + i + "," + j + "): cost can't be negative.");
+                    }
+                    
+                    board.cost[i][j] = costValue;
                 }
             }
 
