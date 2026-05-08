@@ -24,11 +24,13 @@ public class IDAStar implements SearchAlgorithm {
         State start = new State(board.startX, board.startY);
         int threshold = heuristic.estimate(start, board);
         
-        List<State> history = new ArrayList<>();
+        List<State> currentPath = new ArrayList<>();
+        List<State> searchTrace = new ArrayList<>();
 
         while (true) {
-            history.clear();
-            Object result = search(start, threshold, board, history);
+            currentPath.clear();
+            searchTrace.clear();
+            Object result = search(start, threshold, board, currentPath, searchTrace);
             
             if (result instanceof SearchResult) {
                 return (SearchResult) result;
@@ -36,13 +38,13 @@ public class IDAStar implements SearchAlgorithm {
             
             int nextThreshold = (Integer) result;
             if (nextThreshold == Integer.MAX_VALUE) {
-                return new SearchResult(false, 0, "", iterations, new ArrayList<>());
+                return new SearchResult(false, 0, "", iterations, searchTrace);
             }
             threshold = nextThreshold;
         }
     }
 
-    private Object search(State current, int threshold, Board board, List<State> history) {
+    private Object search(State current, int threshold, Board board, List<State> currentPath, List<State> searchTrace) {
         iterations++;
         
         int f = current.gCost + heuristic.estimate(current, board);
@@ -51,7 +53,8 @@ public class IDAStar implements SearchAlgorithm {
             return f;
         }
         
-        history.add(current);
+        currentPath.add(current);
+        searchTrace.add(new State(current));
 
         if (current.x == board.goalX && current.y == board.goalY && current.nextNumber == board.maxNumber + 1) {
             return new SearchResult(
@@ -59,20 +62,22 @@ public class IDAStar implements SearchAlgorithm {
                         current.gCost,
                         current.path,
                         iterations,
-                        new ArrayList<>(history));
+                        searchTrace);
         }
 
         int min = Integer.MAX_VALUE;
         
         for (Direction dir : Direction.values()) {
-            Optional<State> nextOpt = Movement.slide(board, current, dir);
+            Optional<State> next = Movement.slide(board, current, dir);
             
-            if (nextOpt.isPresent()) {
-                State next = nextOpt.get();
+            if (next.isPresent()) {
+                State nextState = next.get();
+                nextState.lastDir = dir;
+                nextState.parent = current;
                 
-                if (isStateInHistory(next, history)) continue;
+                if (isStateInHistory(nextState, currentPath)) continue;
 
-                Object res = search(next, threshold, board, history);
+                Object res = search(nextState, threshold, board, currentPath, searchTrace);
                 
                 if (res instanceof SearchResult) {
                     return res;
@@ -80,10 +85,13 @@ public class IDAStar implements SearchAlgorithm {
                 
                 int t = (Integer) res;
                 if (t < min) min = t;
+            } else {
+                State deadState = new State(current, dir);
+                searchTrace.add(deadState);
             }
         }
         
-        history.remove(history.size() - 1);
+        currentPath.remove(currentPath.size() - 1);
         return min;
     }
 

@@ -56,7 +56,16 @@ public class GBFS implements SearchAlgorithm {
             // EXPAND
             for (Direction dir : Direction.values()) {
                 Optional<State> next = Movement.slide(board, current, dir);
-                next.ifPresent(pq::add);
+                
+                if (next.isPresent()) {
+                    State nextState = next.get();
+                    nextState.parent = current;
+                    nextState.lastDir = dir;
+                    pq.add(nextState);
+                } else {
+                    State deadState = new State(current, dir);
+                    history.add(deadState);
+                }
             }
         }
 

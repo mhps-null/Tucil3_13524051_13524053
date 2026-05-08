@@ -55,6 +55,7 @@ public class Movement {
         next.nextNumber = nextNumber;
         next.gCost += totalCost;
         next.path += dir.symbol;
+        next.lastDir = dir;
 
         return Optional.of(next);
     }
