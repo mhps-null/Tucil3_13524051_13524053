@@ -22,6 +22,8 @@ public class MainWindow extends JFrame {
     private SearchResult latestResult;
     private List<State> winningPath;
     private String currentFilepath;
+    private String usedAlgorithm = "";
+    private String usedHeuristic = "";
     
     private JTextArea logArea;
     private PlaybackPanel playbackPanel;
@@ -172,6 +174,11 @@ public class MainWindow extends JFrame {
     }
 
     private void handleRun(String algo, int heurIdx) {
+        usedAlgorithm = algo;
+        if (heurIdx == 0) usedHeuristic = "MG";
+        else if (heurIdx == 1) usedHeuristic = "MNT";
+        else if (heurIdx == 2) usedHeuristic = "MT";
+
         Heuristic h = null;
         if (heurIdx == 0) h = new ManhattanGoal();
         else if (heurIdx == 1) h = new ManhattanNextTarget();
@@ -224,8 +231,10 @@ public class MainWindow extends JFrame {
 
     private void handleSave() {
         if (latestResult != null && latestResult.found) {
-            Logger.saveResult(currentFilepath, currentBoard, winningPath, latestResult.totalCost, latestResult.iterations, 0);
-            JOptionPane.showMessageDialog(this, "Berhasil disimpan sebagai _Result.txt!");
+            Logger.saveResult(currentFilepath, currentBoard, winningPath, latestResult.totalCost, latestResult.iterations, 0, usedAlgorithm, usedHeuristic);
+            
+            String suffix = usedAlgorithm.equals("UCS") ? usedAlgorithm : usedAlgorithm + "_" + usedHeuristic;
+            JOptionPane.showMessageDialog(this, "Berhasil disimpan sebagai file _Result_" + suffix + ".txt!");
         } else {
             JOptionPane.showMessageDialog(this, "Tidak ada solusi untuk disimpan.");
         }

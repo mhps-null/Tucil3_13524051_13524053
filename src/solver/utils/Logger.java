@@ -4,6 +4,8 @@ import solver.core.Board;
 import solver.core.State;
 import solver.core.Tile;
 import solver.core.TileType;
+import solver.algorithm.SearchResult;
+import solver.visualization.cli.RendererCLI;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,8 +15,18 @@ import java.util.List;
 
 public class Logger {
     
-    public static void saveResult(String filepath, Board board, List<State> solutionPath, int cost, int iters, long time) {
-        String outPath = filepath.replace(".txt", "_Result.txt");
+    public static void saveResult(String filepath, Board board, List<State> solutionPath, int cost, int iters, long time, String algo, String heur) {
+        String baseName = filepath;
+        if (filepath.endsWith(".txt")) {
+            baseName = filepath.substring(0, filepath.length() - 4);
+        }
+
+        String outPath;
+        if (algo.equals("UCS")) {
+            outPath = baseName + "_Result_" + algo + ".txt";
+        } else {
+            outPath = baseName + "_Result_" + algo + "_" + heur + ".txt";
+        }
         
         try (PrintWriter writer = new PrintWriter(new FileWriter(outPath))) {
             writer.println("=== LAPORAN SOLUSI ===");
@@ -28,17 +40,18 @@ public class Logger {
                 State s = solutionPath.get(i);
                 writer.println(i == 0 ? "Initial" : "Step " + i + " : " + s.lastDir);
                 
-                // Cetak Board ke File
                 for (int r = 0; r < board.N; r++) {
                     for (int c = 0; c < board.M; c++) {
                         if (r == s.x && c == s.y) writer.print('Z');
                         else {
                             Tile t = board.grid[r][c];
-                            // Sesuaikan dengan char asli map-mu
                             if (t.type == TileType.WALL) writer.print('X');
                             else if (t.type == TileType.LAVA) writer.print('L');
                             else if (t.type == TileType.GOAL) writer.print('O');
-                            else if (t.type == TileType.NUMBER) writer.print(t.value);
+                            else if (t.type == TileType.NUMBER) {
+                                if (t.value >= s.nextNumber) writer.print(t.value);
+                                else writer.print('*');
+                            }
                             else writer.print('*');
                         }
                     }
@@ -46,7 +59,7 @@ public class Logger {
                 }
                 writer.println();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -60,6 +73,41 @@ public class Logger {
             writer.println("Waktu    : " + timeMs + " ms");
         } catch (IOException e) {
             System.err.println("[ERROR] Gagal menyimpan file: " + e.getMessage());
+        }
+    }
+
+    public static void printSearchTrace(SearchResult result, Board board, long timeMs) {
+        System.out.println("==========SOLUSI DITEMUKAN!==========");
+        System.out.println("Path        : " + result.path);
+        System.out.println("Total Cost  : " + result.totalCost);
+        System.out.println("Iterasi     : " + result.iterations);
+        System.out.println("Waktu       : " + timeMs + " ms");
+        System.out.println("=====================================\n");
+
+        System.out.println("--- CETAK LANGKAH PER LANGKAH ---");
+        for (int i = 0; i < result.history.size(); i++) {
+            State current = result.history.get(i);
+            
+            if (i == 0) {
+                System.out.println("Step 0 : Initial");
+            } else {
+                String moveInfo = (current.lastDir != null) ? current.lastDir.toString() : "?";
+                if (current.isGameOver) {
+                    int parentIdx = 0;
+                    for (int j = i - 1; j >= 0; j--) {
+                        if (!result.history.get(j).isGameOver && result.history.get(j).path.equals(current.path)) {
+                            parentIdx = j;
+                            break;
+                        }
+                    }
+                    System.out.println("Step " + i + " : " + moveInfo + " (Game Over, kembali ke Step " + parentIdx + ")");
+                    continue;
+                } else {
+                    System.out.println("Step " + i + " : " + moveInfo);
+                }
+            }
+            RendererCLI.render(board, current);
+            System.out.println();
         }
     }
 }
