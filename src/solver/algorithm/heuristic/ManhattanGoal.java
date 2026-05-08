@@ -2,7 +2,7 @@ package solver.algorithm.heuristic;
 
 import solver.core.*;
 
-public class ManhattanHeuristic implements Heuristic {
+public class ManhattanGoal implements Heuristic {
 
     @Override
     public int estimate(State state, Board board) {
