@@ -38,7 +38,7 @@ Install Java:
 
 ```bash
 sudo apt update
-sudo apt install openjdk-21-jdk-headless
+sudo apt install openjdk-21-jdk
 ```
 
 Jika menggunakan GUI di WSL, install dependency X11:
