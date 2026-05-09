@@ -63,14 +63,6 @@ java --version
 javac --version
 ```
 
-Pastikan X11 berjalan:
-
-```bash
-xeyes
-```
-
-Jika window `xeyes` muncul, GUI dapat dijalankan.
-
 ---
 
 # Struktur Project
