@@ -1,0 +1,163 @@
+=== LAPORAN SOLUSI ===
+Status  : Solusi Ditemukan
+Path    : DRURUDLULDLD
+Cost    : 290
+Iterasi : 33
+Waktu   : 2 ms
+
+Initial
+XXXXXXXXXX
+XZ******0X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 1 : DOWN
+XXXXXXXXXX
+X*******0X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XZ*XX***1X
+XXXXXXXXXX
+
+Step 2 : RIGHT
+XXXXXXXXXX
+X*******0X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XOZXX***1X
+XXXXXXXXXX
+
+Step 3 : UP
+XXXXXXXXXX
+X*******0X
+X*XXXXX**X
+X*X**2X**X
+X*Z******X
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 4 : RIGHT
+XXXXXXXXXX
+X*******0X
+X*XXXXX**X
+X*X**2X**X
+X*******ZX
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 5 : UP
+XXXXXXXXXX
+X*******ZX
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 6 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***ZX
+XXXXXXXXXX
+
+Step 7 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XXZ***X
+XXXXXXXXXX
+
+Step 8 : UP
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**ZX**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 9 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*XZ**X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 10 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+X**ZX****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 11 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+XZ**X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 12 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XZ*XX****X
+XXXXXXXXXX
+

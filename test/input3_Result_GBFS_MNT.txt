@@ -1,0 +1,21 @@
+=== LAPORAN SOLUSI ===
+Status  : Solusi Ditemukan
+Path    : R
+Cost    : 51
+Iterasi : 2
+Waktu   : 0 ms
+
+Initial
+XXXXX
+XZ*OX
+X*X*X
+X***X
+XXXXX
+
+Step 1 : RIGHT
+XXXXX
+X**ZX
+X*X*X
+X***X
+XXXXX
+

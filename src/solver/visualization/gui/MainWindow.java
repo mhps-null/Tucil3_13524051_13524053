@@ -24,6 +24,7 @@ public class MainWindow extends JFrame {
     private String currentFilepath;
     private String usedAlgorithm = "";
     private String usedHeuristic = "";
+    private long latestExecutionTime = 0;
     
     private JTextArea logArea;
     private PlaybackPanel playbackPanel;
@@ -193,7 +194,7 @@ public class MainWindow extends JFrame {
 
         long start = System.currentTimeMillis();
         latestResult = solver.solve(currentBoard);
-        long timeMs = System.currentTimeMillis() - start;
+        this.latestExecutionTime = System.currentTimeMillis() - start;
 
         if (latestResult.found) {
             winningPath = new ArrayList<>();
@@ -203,7 +204,7 @@ public class MainWindow extends JFrame {
                 temp = temp.parent;
             }
 
-            String traceLog = Logger.getSearchTraceString(latestResult, timeMs);
+            String traceLog = Logger.getSearchTraceString(latestResult, this.latestExecutionTime);
             
             logArea.setText(traceLog);
             logArea.setCaretPosition(0); 
@@ -233,7 +234,7 @@ public class MainWindow extends JFrame {
 
     private void handleSave() {
         if (latestResult != null && latestResult.found) {
-            Logger.saveResult(currentFilepath, currentBoard, winningPath, latestResult.totalCost, latestResult.iterations, 0, usedAlgorithm, usedHeuristic);
+            Logger.saveResult(currentFilepath, currentBoard, winningPath, latestResult.totalCost, latestResult.iterations, this.latestExecutionTime, usedAlgorithm, usedHeuristic);
             
             String suffix = usedAlgorithm.equals("UCS") ? usedAlgorithm : usedAlgorithm + "_" + usedHeuristic;
             JOptionPane.showMessageDialog(this, "Berhasil disimpan sebagai file _Result_" + suffix + ".txt!");

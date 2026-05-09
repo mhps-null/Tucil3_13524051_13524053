@@ -1,0 +1,115 @@
+=== LAPORAN SOLUSI ===
+Status  : Solusi Ditemukan
+Path    : RDLULDLD
+Cost    : 31
+Iterasi : 12
+Waktu   : 0 ms
+
+Initial
+XXXXXXXXXX
+XZ******0X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 1 : RIGHT
+XXXXXXXXXX
+X*******ZX
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***1X
+XXXXXXXXXX
+
+Step 2 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX***ZX
+XXXXXXXXXX
+
+Step 3 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**2X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XXZ***X
+XXXXXXXXXX
+
+Step 4 : UP
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X**ZX**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 5 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*XZ**X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 6 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+X**ZX****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 7 : LEFT
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+XZ**X****X
+XO*XX****X
+XXXXXXXXXX
+
+Step 8 : DOWN
+XXXXXXXXXX
+X********X
+X*XXXXX**X
+X*X***X**X
+X********X
+X********X
+X***X****X
+X***X****X
+XZ*XX****X
+XXXXXXXXXX
+

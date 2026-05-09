@@ -1,0 +1,35 @@
+=== LAPORAN SOLUSI ===
+Status  : Solusi Ditemukan
+Path    : DRU
+Cost    : 9
+Iterasi : 12
+Waktu   : 3 ms
+
+Initial
+XXXXX
+XZ*OX
+X*X*X
+X***X
+XXXXX
+
+Step 1 : DOWN
+XXXXX
+X**OX
+X*X*X
+XZ**X
+XXXXX
+
+Step 2 : RIGHT
+XXXXX
+X**OX
+X*X*X
+X**ZX
+XXXXX
+
+Step 3 : UP
+XXXXX
+X**ZX
+X*X*X
+X***X
+XXXXX
+
