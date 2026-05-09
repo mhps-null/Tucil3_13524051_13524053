@@ -110,4 +110,39 @@ public class Logger {
             System.out.println();
         }
     }
+
+    public static String getSearchTraceString(SearchResult result, long timeMs) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("==========SOLUSI DITEMUKAN!==========\n");
+        sb.append(String.format("%-12s: %s\n", "Path", result.path));
+        sb.append(String.format("%-12s: %d\n", "Total Cost", result.totalCost));
+        sb.append(String.format("%-12s: %d\n", "Iterasi", result.iterations));
+        sb.append(String.format("%-12s: %d ms\n", "Waktu", timeMs));
+        sb.append("=====================================\n\n");
+
+        sb.append("--- CETAK LANGKAH PER LANGKAH ---\n");
+        for (int i = 0; i < result.history.size(); i++) {
+            State current = result.history.get(i);
+            
+            if (i == 0) {
+                sb.append("Step 0 : Initial\n");
+            } else {
+                String moveInfo = (current.lastDir != null) ? current.lastDir.toString() : "?";
+                if (current.isGameOver) {
+                    int parentIdx = 0;
+                    for (int j = i - 1; j >= 0; j--) {
+                        if (!result.history.get(j).isGameOver && result.history.get(j).path.equals(current.path)) {
+                            parentIdx = j;
+                            break;
+                        }
+                    }
+                    sb.append("Step ").append(i).append(" : ").append(moveInfo)
+                      .append(" (Game Over, kembali ke Step ").append(parentIdx).append(")\n");
+                } else {
+                    sb.append("Step ").append(i).append(" : ").append(moveInfo).append("\n");
+                }
+            }
+        }
+        return sb.toString();
+    }
 }

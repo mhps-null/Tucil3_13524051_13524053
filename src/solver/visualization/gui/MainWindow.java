@@ -129,6 +129,7 @@ public class MainWindow extends JFrame {
         logArea.setEditable(false);
         logArea.setBackground(new Color(30, 30, 30));
         logArea.setForeground(Color.WHITE);
+        logArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         JScrollPane scrollPane = new JScrollPane(logArea);
         scrollPane.setPreferredSize(new Dimension(100, 200)); 
         phase3.add(scrollPane, BorderLayout.NORTH);
@@ -202,14 +203,15 @@ public class MainWindow extends JFrame {
                 temp = temp.parent;
             }
 
-            logArea.setText("=== SOLUSI DITEMUKAN ===\nPath: " + latestResult.path + 
-                            "\nCost: " + latestResult.totalCost + 
-                            "\nIterasi: " + latestResult.iterations + 
-                            "\nWaktu: " + timeMs + " ms\n");
+            String traceLog = Logger.getSearchTraceString(latestResult, timeMs);
+            
+            logArea.setText(traceLog);
+            logArea.setCaretPosition(0); 
+
             playbackPanel.setSolution(winningPath);
         } else {
             logArea.setText("=== GAGAL ===\nTidak ada solusi ditemukan.");
-            playbackPanel.setSolution(new ArrayList<>()); // Clear
+            playbackPanel.setSolution(new ArrayList<>());
         }
         cardLayout.show(cardPanel, "PHASE_3");
     }
