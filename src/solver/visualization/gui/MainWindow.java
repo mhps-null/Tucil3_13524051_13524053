@@ -88,7 +88,7 @@ public class MainWindow extends JFrame {
         centerConfig.add(createWhiteLabel("[#] Number  : Teks Biru"));
         centerConfig.add(Box.createVerticalStrut(40));
 
-        JComboBox<String> algoCb = new JComboBox<>(new String[]{"UCS", "GBFS", "A*", "IDA*"});
+        JComboBox<String> algoCb = new JComboBox<>(new String[]{"UCS", "GBFS", "AStar", "IDAStar"});
         JComboBox<String> heurCb = new JComboBox<>(new String[]{"Manhattan To Goal", "Manhattan To Next Target", "Manhattan Total To Goal"});
         JLabel heurLabel = createWhiteLabel("Pilih Heuristik:");
 
@@ -188,7 +188,7 @@ public class MainWindow extends JFrame {
         SearchAlgorithm solver;
         if(algo.equals("UCS")) solver = new UCS();
         else if(algo.equals("GBFS")) solver = new GBFS(h);
-        else if(algo.equals("A*")) solver = new AStar(h);
+        else if(algo.equals("AStar")) solver = new AStar(h);
         else solver = new IDAStar(h);
 
         long start = System.currentTimeMillis();
