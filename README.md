@@ -81,6 +81,12 @@ src/
 
 ---
 
+## Quick Start
+
+```bash
+java -cp out solver.Main
+```
+
 # Cara Kompilasi
 
 Masuk ke root project:

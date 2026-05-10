@@ -1,8 +1,5 @@
 # Build output
-/out/
-/bin/
 /build/
-*.class
 *.jar
 
 # Logs
