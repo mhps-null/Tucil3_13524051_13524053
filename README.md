@@ -81,7 +81,7 @@ src/
 
 ---
 
-## Quick Start
+# Quick Start
 
 ```bash
 java -cp out solver.Main
